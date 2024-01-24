@@ -23,7 +23,7 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textTitle.text = args.example.Title
-        binding.textDetail.text = args.example.Detail
+        binding.textTitle.text = args.example.title
+        binding.textDetail.text = args.example.detail
     }
 }

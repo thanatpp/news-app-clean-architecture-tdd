@@ -13,7 +13,7 @@ class NewsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonNext.setOnClickListener {
-            val example = Example(Title = "Example Title", Detail = "Example Detail")
+            val example = Example(title = "Example Title", detail = "Example Detail")
             val action = NewsDetailFragment.newAction(example)
             binding.root.findNavController().navigate(action)
         }
