@@ -20,7 +20,7 @@
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail">
         <argument
-            android:name="example"
-            app:argType="com.thanatpp.newsapp.data.Example" />
+            android:name="articlesModel"
+            app:argType="com.thanatpp.newsapp.domain.model.ArticlesModel" />
     </fragment>
 </navigation>
