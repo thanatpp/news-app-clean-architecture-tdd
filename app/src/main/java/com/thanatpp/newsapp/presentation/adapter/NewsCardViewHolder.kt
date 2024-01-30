@@ -23,6 +23,7 @@ class NewsCardViewHolder(
 
         binding.textViewTitle.text = item.title
         binding.textViewDesc.text = item.description
+        binding.textViewDateTime.text = item.dateTime
         binding.newsCard.setOnClickListener {
             onItemClicked(item)
         }

@@ -22,7 +22,8 @@ class NewsViewModel @Inject constructor(
     private val newsArticleListUseCase: NewsArticleListUseCase
 ) : ViewModel() {
 
-    private var _newsArticle: MutableLiveData<NewsStateModel> = state.getLiveData("NEWS_STATE_MODEL")
+    private var _newsArticle: MutableLiveData<NewsStateModel> =
+        state.getLiveData("NEWS_STATE_MODEL")
     val newsArticle: LiveData<NewsStateModel> = _newsArticle
 
     init {
@@ -35,9 +36,14 @@ class NewsViewModel @Inject constructor(
                 .flowOn(Dispatchers.IO)
                 .collect { it ->
                     val filteredArticlesAvailable =
-                        it.filter { !it.title.contains("remove", ignoreCase = true) }
-                    _newsArticle.value = NewsStateModel(isLoading = false, filteredArticlesAvailable)
+                        it.filter { !isInvalidArticles(it.imageUrl) }
+                    _newsArticle.value =
+                        NewsStateModel(isLoading = false, filteredArticlesAvailable)
                 }
         }
+    }
+
+    var isInvalidArticles = fun(image: String): Boolean {
+        return image.isEmpty()
     }
 }

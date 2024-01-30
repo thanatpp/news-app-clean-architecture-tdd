@@ -12,7 +12,7 @@ data class Articles(
     var description: String?,
     var url: String,
     var urlToImage: String?,
-    var publishedAt: String,
+    var publishedAt: String?,
     var content: String?,
 ) : Parcelable {
     companion object {
@@ -21,7 +21,8 @@ data class Articles(
                 title = this.title ?: "",
                 description = this.description ?: "",
                 imageUrl = this.urlToImage ?: "",
-                content = this.content ?: ""
+                content = this.content ?: "",
+                dateTime = this.publishedAt ?: ""
             )
         }
     }

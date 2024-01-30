@@ -9,4 +9,5 @@ data class ArticlesModel(
     var description: String,
     var imageUrl: String,
     var content: String,
+    var dateTime: String,
 ) : Parcelable

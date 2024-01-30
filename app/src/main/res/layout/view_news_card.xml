@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsCard"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:layout_margin="12dp"
-    android:id="@+id/newsCard">
+    android:layout_margin="12dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewNews"
@@ -53,6 +53,29 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
         tools:ignore="RtlSymmetry"
         tools:text="The standard Lorem Ipsum passage, used since the 1500s" />
+
+    <ImageView
+        android:id="@+id/textViewIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Icon Clock"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:src="@drawable/ic_schedule"
+        app:layout_constraintStart_toEndOf="@id/imageViewNews"
+        app:layout_constraintTop_toBottomOf="@id/textViewDesc"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/textViewDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/textViewIcon"
+        app:layout_constraintStart_toEndOf="@id/textViewIcon"
+        app:layout_constraintTop_toTopOf="@id/textViewIcon"
+        tools:text="2024-01-30T03:02:05.852Z" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

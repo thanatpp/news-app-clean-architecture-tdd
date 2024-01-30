@@ -42,6 +42,7 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
         binding.textDetail.text = args.articlesModel.description
         binding.textContent.text = args.articlesModel.content
         binding.imageViewNews.contentDescription = args.articlesModel.title
+        binding.textViewDateTime.text = args.articlesModel.dateTime
 
         binding.topAppBar.setNavigationOnClickListener {
             binding.root.findNavController().popBackStack()
