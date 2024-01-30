@@ -2,6 +2,7 @@ package com.thanatpp.newsapp.presentation.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,7 @@ import com.thanatpp.newsapp.domain.model.ArticlesModel
 
 class NewsCardViewHolder(
     private val binding: ViewNewsCardBinding,
-    private val onItemClicked: (ArticlesModel) -> Unit
+    private val onItemClicked: (View, ArticlesModel) -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root)  {
 
@@ -25,7 +26,7 @@ class NewsCardViewHolder(
         binding.textViewDesc.text = item.description
         binding.textViewDateTime.text = item.dateTime
         binding.newsCard.setOnClickListener {
-            onItemClicked(item)
+            onItemClicked(binding.newsCard, item)
         }
     }
 
@@ -33,7 +34,7 @@ class NewsCardViewHolder(
     companion object {
         fun newInstance(
             parent: ViewGroup,
-            onItemClicked: (ArticlesModel) -> Unit
+            onItemClicked: (View, ArticlesModel) -> Unit
         ): NewsCardViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = ViewNewsCardBinding.inflate(inflater, parent, false)

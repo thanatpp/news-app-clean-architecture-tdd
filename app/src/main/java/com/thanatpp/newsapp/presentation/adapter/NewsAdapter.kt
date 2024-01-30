@@ -9,7 +9,7 @@ import com.thanatpp.newsapp.domain.model.ArticlesModel
 
 class NewsAdapter(
     private val items: List<ArticlesModel>,
-    private val onClickItem: (ArticlesModel) -> Unit
+    private val onClickItem: (View, ArticlesModel) -> Unit
 ) : RecyclerView.Adapter<NewsCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsCardViewHolder {
@@ -23,8 +23,5 @@ class NewsAdapter(
     override fun onBindViewHolder(holder: NewsCardViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
-        holder.itemView.setOnClickListener {
-            onClickItem(item)
-        }
     }
 }

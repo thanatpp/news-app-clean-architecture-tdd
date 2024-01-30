@@ -3,11 +3,15 @@ package com.thanatpp.newsapp.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.thanatpp.newsapp.R
 import com.thanatpp.newsapp.data.Example
 import com.thanatpp.newsapp.data.network.response.Articles
@@ -35,9 +39,9 @@ class NewsFragment :
         }
     }
 
-    private val onClickItem = fun(articles: ArticlesModel) {
-        Log.i("TEST", "On Clicked $articles")
+    private val onClickItem = fun(view: View, articles: ArticlesModel) {
+        val extras = FragmentNavigatorExtras(view to "news_transition_name")
         val action = NewsDetailFragment.newAction(articles)
-        binding.root.findNavController().navigate(action)
+        binding.root.findNavController().navigate(action, extras)
     }
 }
