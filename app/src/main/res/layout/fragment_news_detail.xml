@@ -2,10 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsCardDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="news_transition_name"
-    android:id="@+id/newsCardDetail">
+    android:transitionName="news_transition_name">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -19,73 +19,101 @@
             android:minHeight="?attr/actionBarSize"
             app:layout_anchor="@+id/appBarLayout"
             app:layout_anchorGravity="center"
+            app:layout_scrollEffect="compress"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:titleCentered="true" />
 
-        <TextView
-            android:id="@+id/textTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingBottom="8dp"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="24dp">
-
-            <ImageView
-                android:id="@+id/textViewIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:contentDescription="Icon Clock"
-                android:paddingHorizontal="12dp"
-                android:src="@drawable/ic_schedule"
-                app:layout_constraintStart_toEndOf="@id/imageViewNews"
-                app:layout_constraintTop_toBottomOf="@id/textViewDesc" />
+            android:orientation="vertical"
+            android:paddingBottom="68dp">
 
             <TextView
-                android:id="@+id/textViewDateTime"
+                android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="8dp"
-                app:layout_constraintStart_toEndOf="@id/textViewIcon"
-                app:layout_constraintTop_toTopOf="@id/textViewIcon"
-                tools:text="2024-01-30T03:02:05.852Z" />
+                android:paddingHorizontal="12dp"
+                android:paddingBottom="8dp"
+                android:text="@string/hello_blank_fragment"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="24dp">
+
+                <ImageView
+                    android:id="@+id/textViewIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Icon Clock"
+                    android:paddingHorizontal="12dp"
+                    android:src="@drawable/ic_schedule"
+                    app:layout_constraintStart_toEndOf="@id/imageViewNews"
+                    app:layout_constraintTop_toBottomOf="@id/textViewDesc" />
+
+                <TextView
+                    android:id="@+id/textViewDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/textViewIcon"
+                    app:layout_constraintTop_toTopOf="@id/textViewIcon"
+                    tools:text="2024-01-30T03:02:05.852Z" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageViewNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="desc"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/textDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="24dp"
+                android:text="@string/hello_blank_fragment"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="12dp"
+                android:text="@string/hello_blank_fragment"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageViewNews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="desc"
-            android:src="@drawable/ic_launcher_background" />
+    </androidx.core.widget.NestedScrollView>
 
-        <TextView
-            android:id="@+id/textDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingTop="24dp"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="desc"
+        app:srcCompat="@drawable/ic_bookmark" />
 
-        <TextView
-            android:id="@+id/textContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
-            android:paddingTop="12dp"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
