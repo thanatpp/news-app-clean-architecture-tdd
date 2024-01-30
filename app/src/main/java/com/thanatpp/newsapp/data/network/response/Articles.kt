@@ -13,14 +13,15 @@ data class Articles(
     var url: String,
     var urlToImage: String?,
     var publishedAt: String,
-    var content: String,
+    var content: String?,
 ) : Parcelable {
     companion object {
         fun Articles.toModel(): ArticlesModel {
             return ArticlesModel(
                 title = this.title ?: "",
                 description = this.description ?: "",
-                imageUrl = this.urlToImage ?: ""
+                imageUrl = this.urlToImage ?: "",
+                content = this.content ?: ""
             )
         }
     }
