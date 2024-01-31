@@ -14,7 +14,8 @@ interface DataSource {
     ): NewArticlesResponse
 
     suspend fun getNewsArticlesFromDB(): List<NewsTable>
-    suspend fun insertNews(news: NewsTable): Unit
+    suspend fun insertNews(news: NewsTable)
+    suspend fun isHasNews(title: String): Boolean
 }
 
 class NewsDataSource @Inject constructor(
@@ -35,5 +36,9 @@ class NewsDataSource @Inject constructor(
 
     override suspend fun insertNews(news: NewsTable) {
         return newsDao.insertNews(news)
+    }
+
+    override suspend fun isHasNews(title: String): Boolean {
+        return newsDao.isExist(title)
     }
 }

@@ -39,7 +39,7 @@ class NewsFragment :
 
     private val onClickItem = fun(view: View, articles: ArticlesModel) {
         val extras = FragmentNavigatorExtras(view to "news_transition_name")
-        val action = NewsDetailFragment.newAction(articles)
+        val action = NewsDetailFragment.newActionFromNews(articles)
         binding.root.findNavController().navigate(action, extras)
     }
 

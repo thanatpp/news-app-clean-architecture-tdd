@@ -1,8 +1,10 @@
 package com.thanatpp.newsapp.presentation
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -10,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.thanatpp.newsapp.R
 import com.thanatpp.newsapp.databinding.FragmentNewsDetailBinding
 import com.thanatpp.newsapp.domain.model.ArticlesModel
+import com.thanatpp.newsapp.presentation.adapter.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,10 +21,16 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
     FragmentNewsDetailBinding::bind
 ) {
     companion object {
-        fun newAction(
+        fun newActionFromNews(
             articles: ArticlesModel
         ): NewsFragmentDirections.ActionNewsFragmentToNewsDetailFragment {
             return NewsFragmentDirections.actionNewsFragmentToNewsDetailFragment(articles)
+        }
+
+        fun newActionFromBookmark(
+            articles: ArticlesModel
+        ): NewsBookmarkFragmentDirections.ActionNewsBookmarkFragmentToNewsDetailFragment {
+            return NewsBookmarkFragmentDirections.actionNewsBookmarkFragmentToNewsDetailFragment(articles)
         }
     }
 
@@ -31,6 +40,8 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+        setupObserveLiveData()
+        viewModel.checkIsExistBookmark(args.articlesModel.title)
     }
 
     private fun setupView() {
@@ -38,6 +49,7 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
             .load(args.articlesModel.imageUrl)
             .into(binding.imageViewNews);
 
+        binding.floatingActionButton.isVisible = false
         binding.textTitle.text = args.articlesModel.title
         binding.textDetail.text = args.articlesModel.description
         binding.textContent.text = args.articlesModel.content
@@ -50,9 +62,14 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
         }
 
         binding.floatingActionButton.setOnClickListener {
-            viewModel.addToBookmark(args.articlesModel).also {
-                binding.root.findNavController()
-                    .navigate(NewsDetailFragmentDirections.actionNewsDetailFragmentToNewsBookmarkFragment())
+            viewModel.addToBookmark(args.articlesModel)
+        }
+    }
+
+    private fun setupObserveLiveData() {
+        with(viewModel) {
+            isExistBookmark.observe(viewLifecycleOwner) {
+                binding.floatingActionButton.isVisible = !it
             }
         }
     }

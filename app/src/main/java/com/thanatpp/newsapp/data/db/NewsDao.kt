@@ -12,4 +12,7 @@ interface NewsDao {
 
     @Insert
     fun insertNews(vararg news: NewsTable)
+
+    @Query("SELECT EXISTS(SELECT * FROM NEWS_TALBE WHERE title = :title)")
+    fun isExist(title: String): Boolean
 }

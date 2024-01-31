@@ -1,9 +1,12 @@
 package com.thanatpp.newsapp.presentation
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thanatpp.newsapp.domain.usecase.NewsArticleListDBUseCase
+import com.thanatpp.newsapp.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -15,9 +18,8 @@ class NewsBookmarkViewModel @Inject constructor(
     private var useCase: NewsArticleListDBUseCase
 ) : ViewModel() {
 
-    init {
-        fetchNewsBookmark()
-    }
+    private var _newsArticle = SingleLiveEvent<NewsStateModel>()
+    val newsArticle: LiveData<NewsStateModel> = _newsArticle
 
     fun fetchNewsBookmark() {
         Log.i("TEST", "START fetchNewsBookmark")
@@ -25,7 +27,8 @@ class NewsBookmarkViewModel @Inject constructor(
             useCase.invoke()
                 .flowOn(Dispatchers.IO)
                 .collect {
-                    Log.i("TEST", "FETCH NEWS BOOKMARK ${it.size}")
+                    _newsArticle.value =
+                        NewsStateModel(isLoading = false, it.reversed())
                 }
         }
     }

@@ -27,4 +27,8 @@ class NewsRepository @Inject constructor(
     suspend fun insetNewsDB(articles: ArticlesModel) {
         return dataSource.insertNews(articles.toNewsTable())
     }
+
+    suspend fun isHasNews(title: String): Boolean {
+        return dataSource.isHasNews(title)
+    }
 }
