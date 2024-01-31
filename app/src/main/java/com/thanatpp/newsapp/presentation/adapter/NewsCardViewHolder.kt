@@ -1,13 +1,10 @@
 package com.thanatpp.newsapp.presentation.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.thanatpp.newsapp.data.network.response.Articles
 import com.thanatpp.newsapp.databinding.ViewNewsCardBinding
 import com.thanatpp.newsapp.domain.model.ArticlesModel
 

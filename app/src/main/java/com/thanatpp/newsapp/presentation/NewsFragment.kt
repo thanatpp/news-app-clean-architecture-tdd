@@ -1,20 +1,11 @@
 package com.thanatpp.newsapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.SavedStateHandle
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.thanatpp.newsapp.R
-import com.thanatpp.newsapp.data.Example
-import com.thanatpp.newsapp.data.network.response.Articles
 import com.thanatpp.newsapp.databinding.FragmentNewsBinding
 import com.thanatpp.newsapp.domain.model.ArticlesModel
 import com.thanatpp.newsapp.presentation.adapter.NewsAdapter
@@ -28,7 +19,14 @@ class NewsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
         setupObserveLiveData()
+    }
+
+    private fun setupView() {
+        binding.topAppBar.setOnMenuItemClickListener {
+            onClickMenu()
+        }
     }
 
     private fun setupObserveLiveData() {
@@ -43,5 +41,11 @@ class NewsFragment :
         val extras = FragmentNavigatorExtras(view to "news_transition_name")
         val action = NewsDetailFragment.newAction(articles)
         binding.root.findNavController().navigate(action, extras)
+    }
+
+    private val onClickMenu = fun(): Boolean {
+        binding.root.findNavController()
+            .navigate(NewsFragmentDirections.actionNewsFragmentToNewsBookmarkFragment())
+        return true
     }
 }

@@ -52,14 +52,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="24dp">
+                android:paddingBottom="24dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/textViewIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:contentDescription="Icon Clock"
-                    android:paddingHorizontal="12dp"
+                    android:contentDescription="@string/icon_clock"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="8dp"
                     android:src="@drawable/ic_schedule"
                     app:layout_constraintStart_toEndOf="@id/imageViewNews"
                     app:layout_constraintTop_toBottomOf="@id/textViewDesc" />
@@ -68,7 +70,6 @@
                     android:id="@+id/textViewDateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
                     app:layout_constraintStart_toEndOf="@id/textViewIcon"
                     app:layout_constraintTop_toTopOf="@id/textViewIcon"
                     tools:text="2024-01-30T03:02:05.852Z" />
@@ -114,6 +115,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="desc"
-        app:srcCompat="@drawable/ic_bookmark" />
+        app:srcCompat="@drawable/ic_bookmark_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

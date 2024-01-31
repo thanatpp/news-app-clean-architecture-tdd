@@ -5,6 +5,8 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.thanatpp.newsapp.databinding.FragmentNewsBookmarkBinding
+import kotlin.reflect.KFunction1
 
 abstract class BaseFragment<VB : ViewBinding>(
     @LayoutRes val layoutRes: Int,
