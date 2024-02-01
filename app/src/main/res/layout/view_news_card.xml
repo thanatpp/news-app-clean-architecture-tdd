@@ -31,7 +31,7 @@
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageViewNews"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
         android:paddingTop="8dp"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTitle"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageViewNews"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
@@ -69,14 +69,28 @@
 
     <TextView
         android:id="@+id/textViewDateTime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="@id/textViewIcon"
+        app:layout_constraintEnd_toStartOf="@id/imageViewDelete"
         app:layout_constraintStart_toEndOf="@id/textViewIcon"
         app:layout_constraintTop_toTopOf="@id/textViewIcon"
-        tools:text="2024-01-30T03:02:05.852Z" />
+        tools:text="2024-01-30T03:02:05.852Z12312321321" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

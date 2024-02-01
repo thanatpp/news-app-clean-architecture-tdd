@@ -32,9 +32,9 @@ class NewsDetailViewModel @Inject constructor(
         }
     }
 
-    fun checkIsExistBookmark(title: String) {
+    fun checkIsExistBookmark(articles: ArticlesModel) {
         viewModelScope.launch {
-            isExistNewsBookmarkUseCase.invoke(title)
+            isExistNewsBookmarkUseCase.invoke(articles)
                 .flowOn(Dispatchers.IO)
                 .collect {
                     Log.i("TEST", "checkIsExistBookmark $it")

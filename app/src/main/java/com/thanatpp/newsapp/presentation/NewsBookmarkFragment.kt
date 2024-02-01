@@ -36,7 +36,13 @@ class NewsBookmarkFragment :
     private fun setupObserveLiveData() {
         with(viewModel) {
             newsArticle.observe(viewLifecycleOwner) {
-                binding.recyclerViewNews.adapter = NewsAdapter(it.articleList, onClickItem)
+                binding.recyclerViewNews.adapter =
+                    NewsAdapter(
+                        items = it.articleList,
+                        onClickItem = onClickItem,
+                        deleteAble = true,
+                        onClickDelete = onClickDelete
+                    )
             }
         }
     }
@@ -45,5 +51,9 @@ class NewsBookmarkFragment :
         val extras = FragmentNavigatorExtras(view to "news_transition_name")
         val action = NewsDetailFragment.newActionFromBookmark(articles)
         binding.root.findNavController().navigate(action, extras)
+    }
+
+    private val onClickDelete = fun(articles: ArticlesModel) {
+        viewModel.deleteNewsBookmark(articles)
     }
 }

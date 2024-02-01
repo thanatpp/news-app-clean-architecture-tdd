@@ -16,6 +16,7 @@ interface DataSource {
     suspend fun getNewsArticlesFromDB(): List<NewsTable>
     suspend fun insertNews(news: NewsTable)
     suspend fun isHasNews(title: String): Boolean
+    suspend fun deleteNews(title: String)
 }
 
 class NewsDataSource @Inject constructor(
@@ -40,5 +41,9 @@ class NewsDataSource @Inject constructor(
 
     override suspend fun isHasNews(title: String): Boolean {
         return newsDao.isExist(title)
+    }
+
+    override suspend fun deleteNews(title: String) {
+        return newsDao.deleteNewsByTitle(title)
     }
 }

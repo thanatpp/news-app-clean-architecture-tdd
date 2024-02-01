@@ -41,7 +41,7 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>(
         super.onViewCreated(view, savedInstanceState)
         setupView()
         setupObserveLiveData()
-        viewModel.checkIsExistBookmark(args.articlesModel.title)
+        viewModel.checkIsExistBookmark(args.articlesModel)
     }
 
     private fun setupView() {

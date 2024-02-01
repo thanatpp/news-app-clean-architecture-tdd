@@ -15,4 +15,7 @@ interface NewsDao {
 
     @Query("SELECT EXISTS(SELECT * FROM NEWS_TALBE WHERE title = :title)")
     fun isExist(title: String): Boolean
+
+    @Query("DELETE FROM NEWS_TALBE WHERE title = :title")
+    fun deleteNewsByTitle(title: String)
 }

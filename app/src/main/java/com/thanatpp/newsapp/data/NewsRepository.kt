@@ -1,9 +1,7 @@
 package com.thanatpp.newsapp.data
 
 import com.thanatpp.newsapp.data.db.roommodel.NewsTable.Companion.toModel
-import com.thanatpp.newsapp.data.network.response.Articles
 import com.thanatpp.newsapp.data.network.response.Articles.Companion.toModel
-import com.thanatpp.newsapp.data.network.response.NewArticlesResponse
 import com.thanatpp.newsapp.domain.model.ArticlesModel
 import com.thanatpp.newsapp.domain.model.ArticlesModel.Companion.toNewsTable
 import javax.inject.Inject
@@ -28,7 +26,12 @@ class NewsRepository @Inject constructor(
         return dataSource.insertNews(articles.toNewsTable())
     }
 
-    suspend fun isHasNews(title: String): Boolean {
-        return dataSource.isHasNews(title)
+    suspend fun isHasNews(articles: ArticlesModel): Boolean {
+        return dataSource.isHasNews(articles.title)
+    }
+
+    suspend fun deleteNews(articles: ArticlesModel): Boolean {
+        dataSource.deleteNews(articles.title)
+        return true
     }
 }

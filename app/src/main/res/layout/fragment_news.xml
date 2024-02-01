@@ -8,30 +8,39 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:focusableInTouchMode="true"
             android:minHeight="?attr/actionBarSize"
             app:layout_anchor="@+id/appBarLayout"
             app:layout_anchorGravity="center"
-            app:layout_scrollEffect="compress"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:menu="@menu/top_app_bar"
             app:title="Daily News"
             app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewNews"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:itemCount="5"
-        tools:listitem="@layout/view_news_card" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/view_news_card" />
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
